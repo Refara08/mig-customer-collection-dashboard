@@ -1,7 +1,16 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
+
+import { NotificationContextProvider } from "../store/notif-context";
+import { AuthContextProvider } from "../store/auth-context";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <AuthContextProvider>
+      <NotificationContextProvider>
+        <Component {...pageProps} />
+      </NotificationContextProvider>
+    </AuthContextProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
