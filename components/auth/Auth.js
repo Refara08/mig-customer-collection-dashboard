@@ -77,6 +77,10 @@ const Auth = () => {
 
   return (
     <section className="w-full h-[80vh] grid place-items-center">
+      {notifCtx.status && (
+        <Notification status={notifCtx.status} message={notifCtx.message} />
+      )}
+      {/* <Notification status={"success"} message={"you are logged in!"} /> */}
       <div className="w-[400px] p-6 rounded-xl shadow-xl border-[1px] border-gray-300">
         <h1 className="text-center font-bold text-2xl">welcome</h1>
         <p className="text-center text-sm text-gray-400 mb-8">

@@ -5,9 +5,11 @@ import TrashIcon from "../icons/TrashIcon";
 import PencilIcon from "../icons/PencilIcon";
 
 import updateCustomerDataContext from "../../store/update-customer-ctx";
+import ConfirmationContext from "../../store/confirmation-context";
 
 const CustomerData = (props) => {
   const updateDataCtx = useContext(updateCustomerDataContext);
+  const confirmCtx = useContext(ConfirmationContext);
   const router = useRouter();
   const {
     id,
@@ -40,6 +42,17 @@ const CustomerData = (props) => {
       day: "numeric",
     }
   )} ${new Date(updated_at).getHours()}:${new Date(updated_at).getMinutes()}`;
+
+  const deleteCustomerDataHandler = () => {
+    updateDataCtx.updateData(props.data);
+    confirmCtx.updateTitle("Apakah anda yakin ingin membuang data ini?");
+    confirmCtx.updateRequestConfig({
+      method: "DELETE",
+      body: {
+        id: id,
+      },
+    });
+  };
 
   const editCustomerDataHandler = () => {
     updateDataCtx.updateData(props.data);
@@ -104,7 +117,10 @@ const CustomerData = (props) => {
           <PencilIcon size={"2vh"} />
           <span>Edit</span>
         </button>
-        <button className="flex gap-4 items-center bg-red-700 hover:bg-red-600 hover:shadow-md transition duration-300 text-white py-1 px-5 rounded-md">
+        <button
+          onClick={deleteCustomerDataHandler}
+          className="flex gap-4 items-center bg-red-700 hover:bg-red-600 hover:shadow-md transition duration-300 text-white py-1 px-5 rounded-md"
+        >
           <TrashIcon size={"2vh"} />
           <span>Delete</span>
         </button>
