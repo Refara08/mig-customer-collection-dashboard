@@ -1,80 +1,77 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import SearchIcon from "../icons/SearchIcon";
-
-const UtilsPanel = () => {
+const UtilsPanel = (props) => {
+  const { getFilter, getSort } = props;
   const [filter, setFilter] = useState("ALL");
-  const [sortByName, setSortByName] = useState(false);
-  const [inputIsFocus, setInputIsFocus] = useState(false);
+  const [sortBy, setSortBy] = useState("");
 
-  const toggleSortHandler = () => {
-    setSortByName((prev) => !prev);
-  };
+  useEffect(() => {
+    getFilter(filter);
+  }, [filter]);
+
+  useEffect(() => {
+    getSort(sortBy);
+    // console.log(sortBy);
+  }, [sortBy]);
 
   return (
-    <div className="pb-4 pt-8 flex justify-between items-center">
-      <div>
-        <form className="flex gap-2 items-center justify-start">
-          <div
-            className={`${
-              inputIsFocus ? "bg-black text-white" : "bg-transparent text-black"
-            } p-2 rounded-full transition duration-300`}
-          >
-            <SearchIcon size="1.2rem" />
-          </div>
-          <input
-            className="border-2 border-gray-300 rounded-2xl py-1 px-5"
-            type="text"
-            name="search-customer"
-            id="search-customer"
-            placeholder="Find customer ..."
-            onFocus={() => setInputIsFocus(true)}
-            onBlur={() => setInputIsFocus(false)}
-          />
-        </form>
-      </div>
-      <div className="flex gap-8">
+    <div className="pb-4 pt-8 pl-2 border-r-2 border-stone-300 h-screen">
+      {/* filter */}
+      <div className=" w-full mb-12">
+        <h3 className="mb-2 px-5 uppercase tracking-widest">filter</h3>
         <button
-          onClick={toggleSortHandler}
-          className={`py-1 px-5 rounded-2xl hover:shadow-lg ${
-            sortByName ? "bg-black text-white" : "bg-stone-300 text-black"
+          onClick={() => setFilter("ALL")}
+          className={`py-3 px-5 w-full border-l-2 hover:bg-stone-300 hover:border-black text-left ${
+            filter === "ALL"
+              ? "bg-stone-300 border-black"
+              : "bg-white border-transparent"
           }`}
         >
-          sort by name
+          all
         </button>
-        <div className="flex gap-4 items-center">
-          <h3>filter:</h3>
-          <button
-            onClick={() => setFilter("ALL")}
-            className={`py-1 px-5 rounded-2xl hover:shadow-lg ${
-              filter === "ALL"
-                ? "bg-black text-white"
-                : "bg-stone-300 text-black"
-            }`}
-          >
-            all
-          </button>
-          <button
-            onClick={() => setFilter("ACTIVE")}
-            className={`py-1 px-5 rounded-2xl hover:shadow-lg ${
-              filter === "ACTIVE"
-                ? "bg-black text-white"
-                : "bg-stone-300 text-black"
-            }`}
-          >
-            active
-          </button>
-          <button
-            onClick={() => setFilter("INACTIVE")}
-            className={`py-1 px-5 rounded-2xl hover:shadow-lg ${
-              filter === "INACTIVE"
-                ? "bg-black text-white"
-                : "bg-stone-300 text-black"
-            }`}
-          >
-            inactive
-          </button>
-        </div>
+        <button
+          onClick={() => setFilter("ACTIVE")}
+          className={`py-3 px-5 w-full border-l-2 hover:bg-stone-300 hover:border-black text-left ${
+            filter === "ACTIVE"
+              ? "bg-stone-300 border-black"
+              : "bg-white border-transparent"
+          }`}
+        >
+          active
+        </button>
+        <button
+          onClick={() => setFilter("INACTIVE")}
+          className={`py-3 px-5 w-full border-l-2 hover:bg-stone-300 hover:border-black text-left ${
+            filter === "INACTIVE"
+              ? "bg-stone-300 border-black"
+              : "bg-white border-transparent"
+          }`}
+        >
+          inactive
+        </button>
+      </div>
+      <div className=" w-full mb-12">
+        <h3 className="mb-2 px-5 uppercase tracking-widest">Sort</h3>
+        <button
+          onClick={() => setSortBy("NAME")}
+          className={`py-3 px-5 w-full border-l-2 hover:bg-stone-300 hover:border-black text-left ${
+            sortBy === "NAME"
+              ? "bg-stone-300 border-black"
+              : "bg-white border-transparent"
+          }`}
+        >
+          by Name
+        </button>
+        <button
+          onClick={() => setSortBy("COUNTRY")}
+          className={`py-3 px-5 w-full border-l-2 hover:bg-stone-300 hover:border-black text-left ${
+            sortBy === "COUNTRY"
+              ? "bg-stone-300 border-black"
+              : "bg-white border-transparent"
+          }`}
+        >
+          by Country
+        </button>
       </div>
     </div>
   );

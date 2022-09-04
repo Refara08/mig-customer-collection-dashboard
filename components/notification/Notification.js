@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import NotifModal from "./NotifOverlay";
 
 const Notification = (props) => {
@@ -13,10 +12,6 @@ const Notification = (props) => {
   } else if (status === "error") {
     styling = "bg-red-700";
   }
-
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
 
   return (
     <NotifModal>

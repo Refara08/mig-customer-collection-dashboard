@@ -28,12 +28,10 @@ const Navigation = () => {
   }, []);
 
   return (
-    <div className="sticky top-0 border-b-[1px] border-stone-500 px-8 py-4 z-30">
+    <div className="sticky top-0 shadow-md bg-white bg-opacity-75 backdrop-blur-lg px-8 py-4 z-30">
       <nav className="flex justify-between items-center">
         <Link href={"/"}>
-          <a>
-            <h3 className="text-2xl font-bold">Costumer Collection</h3>
-          </a>
+          <a className="text-2xl font-bold">Costumer Collection</a>
         </Link>
         <ul>
           <li

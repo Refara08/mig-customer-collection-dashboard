@@ -15,12 +15,12 @@ const calculateReminingTime = (expiredTime) => {
 
 //retriving or replacing token every first load/refresh depending on remining time
 const retriveToken = () => {
-  var storedToken, storedExpiredTime;
-
-  if (typeof window !== "undefined") {
-    storedToken = localStorage.getItem("token");
-    storedExpiredTime = localStorage.getItem("expiredTime");
+  if (typeof window === "undefined") {
+    return;
   }
+
+  const storedToken = localStorage.getItem("token");
+  const storedExpiredTime = localStorage.getItem("expiredTime");
 
   const reminingTime = calculateReminingTime(storedExpiredTime);
 
@@ -28,7 +28,10 @@ const retriveToken = () => {
   if (reminingTime <= 60000) {
     localStorage.removeItem("token");
     localStorage.removeItem("expiredTime");
-    return null;
+    return {
+      token: null,
+      duration: null,
+    };
   }
 
   return {
@@ -47,12 +50,17 @@ const authContext = React.createContext({
 
 //auth provider ============================================================
 export const AuthContextProvider = (props) => {
+  // if (typeof window === "undefined") {
+  //   return;
+  // }
+
   //update token everytime page reload/refresh
-  const tokenData = retriveToken();
+  // const tokenData = retriveToken();
+  // const initialToken = tokenData ? tokenData.token : null;
+  // console.log(tokenData);
+  // console.log(initialToken);
 
-  let initialToken = tokenData ? tokenData.token : null;
-
-  const [token, setToken] = useState(initialToken);
+  const [token, setToken] = useState("");
   const isLoggedIn = !!token;
 
   const logoutHandler = useCallback(() => {
@@ -67,6 +75,7 @@ export const AuthContextProvider = (props) => {
 
   const loginHandler = (token, expiredTime) => {
     setToken(token);
+
     localStorage.setItem("token", token);
     localStorage.setItem("expiredTime", expiredTime);
 
@@ -80,14 +89,14 @@ export const AuthContextProvider = (props) => {
   //evaluate setTimout timer(remining time) every reload/refresh
   //useEffect is indeed needed because setTimeout on loginHandler is not being called when the page reloaded/refreshed..
   //..so setTimeout need to be called with updated remining time
-  useEffect(() => {
-    if (tokenData) {
-      // console.log(tokenData.duration);
-      logoutTimer = setTimeout(() => {
-        logoutHandler();
-      }, tokenData.duration);
-    }
-  }, [tokenData, logoutHandler]);
+  // useEffect(() => {
+  //   if (tokenData) {
+  //     // console.log(tokenData.duration);
+  //     logoutTimer = setTimeout(() => {
+  //       logoutHandler();
+  //     }, tokenData.duration);
+  //   }
+  // }, [tokenData, logoutHandler]);
 
   const contextValue = {
     token: token,

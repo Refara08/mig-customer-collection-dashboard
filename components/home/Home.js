@@ -1,13 +1,84 @@
+import { useContext, useEffect, useState } from "react";
+
 import UtilsPanel from "./UtilsPanel";
-import CustomerData from "./CustomerData";
+import TopPanel from "./TopPanel";
+
+import authContext from "../../store/auth-context";
+import LoadingPage from "./LoadingPage";
+import CustomerList from "./CustomerList";
 
 const Home = () => {
+  const { token } = useContext(authContext);
+  const [result, setResult] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [loadedData, setLoadedData] = useState([]);
+  const [sortBy, setSortBy] = useState(false);
+
+  useEffect(() => {
+    setLoadedData(result.data);
+  }, [result]);
+
+  const getEnteredSearch = (input) => {
+    if (!loading) {
+      setLoadedData(
+        result.data.filter((item) => item.name.toLowerCase().includes(input))
+      );
+    }
+  };
+
+  const getSortHandler = (sort) => {
+    setSortBy(sort);
+  };
+
+  const getFilterHandler = (filter) => {
+    if (!loading && filter === "ALL") {
+      setLoadedData(result.data);
+    } else if (!loading && filter === "ACTIVE") {
+      setLoadedData(result.data.filter((item) => item.status === true));
+    } else if (!loading && filter === "INACTIVE") {
+      setLoadedData(result.data.filter((item) => item.status === false));
+    }
+  };
+
+  useEffect(() => {
+    fetch("https://mitramas-test.herokuapp.com/customers", {
+      method: "GET",
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw res;
+      })
+      .then((data) => {
+        setResult(data);
+      })
+      .catch((error) => {
+        setError(error);
+        console.error("Error Fetching data.. ", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [token]);
+
   return (
-    <div className="px-8">
-      <UtilsPanel />
-      <div className="flex flex-col gap-4">
-        <CustomerData />
-        <CustomerData />
+    <div className="flex  h-[88vh] overflow-hidden border-b-2 border-stone-300">
+      <UtilsPanel getFilter={getFilterHandler} getSort={getSortHandler} />
+      <div className="flex flex-[1] flex-col p-0 gap-y-4 w-full overflow-y-scroll">
+        <TopPanel getInput={getEnteredSearch} />
+        {(loading || !loadedData) && <LoadingPage />}
+        {!loading && loadedData && (
+          <CustomerList
+            isLoading={loading}
+            customerList={loadedData}
+            sortBy={sortBy}
+          />
+        )}
       </div>
     </div>
   );
