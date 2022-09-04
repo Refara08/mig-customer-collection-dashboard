@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 const ModalOverlay = (props) => {
   return (
-    <div className={`fixed top-0 right-1/2 translate-x-1/2 z-30`}>
+    <div className={`fixed top-0 right-1/2 translate-x-1/2 z-50`}>
       <div>{props.children}</div>
     </div>
   );

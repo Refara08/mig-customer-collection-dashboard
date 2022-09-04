@@ -1,10 +1,12 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 import Layout from "../components/layout/Layout";
 import Home from "../components/home/Home";
 
 import authContext from "../store/auth-context";
+import LoadingPage from "../components/home/LoadingPage";
 
 export default function HomePage() {
   const router = useRouter();
@@ -18,11 +20,18 @@ export default function HomePage() {
   }, []);
 
   if (!isLoggedIn) {
-    return <p>You need to login to access this page</p>;
+    return <LoadingPage />;
   }
 
   return (
     <Layout>
+      <Head>
+        <title>MIG Dashboard</title>
+        <meta
+          name="description"
+          content="collection database page of MIG customer"
+        />
+      </Head>
       <Home />
     </Layout>
   );

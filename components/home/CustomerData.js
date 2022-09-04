@@ -1,7 +1,14 @@
+import { useContext } from "react";
+import { useRouter } from "next/router";
+
 import TrashIcon from "../icons/TrashIcon";
 import PencilIcon from "../icons/PencilIcon";
 
+import updateCustomerDataContext from "../../store/update-customer-ctx";
+
 const CustomerData = (props) => {
+  const updateDataCtx = useContext(updateCustomerDataContext);
+  const router = useRouter();
   const {
     id,
     name,
@@ -33,6 +40,11 @@ const CustomerData = (props) => {
       day: "numeric",
     }
   )} ${new Date(updated_at).getHours()}:${new Date(updated_at).getMinutes()}`;
+
+  const editCustomerDataHandler = () => {
+    updateDataCtx.updateData(props.data);
+    router.replace("/update-customer");
+  };
 
   return (
     <div
@@ -85,7 +97,10 @@ const CustomerData = (props) => {
       </div>
 
       <div className="flex gap-4">
-        <button className="flex gap-4 items-center bg-green-700 hover:bg-green-600 hover:shadow-md transition duration-300 text-white py-1 px-5 rounded-md">
+        <button
+          onClick={editCustomerDataHandler}
+          className="flex gap-4 items-center bg-green-700 hover:bg-green-600 hover:shadow-md transition duration-300 text-white py-1 px-5 rounded-md"
+        >
           <PencilIcon size={"2vh"} />
           <span>Edit</span>
         </button>
