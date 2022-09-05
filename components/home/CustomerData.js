@@ -62,11 +62,11 @@ const CustomerData = (props) => {
   return (
     <div
       id={id}
-      className="flex justify-between items-center gap-8 rounded-xl border-t-2 hover:border-b-transparent hover:shadow-xl border-stone-300 transition duration-300 pt-6 pb-4 px-8"
+      className="flex flex-col-reverse xl:flex-row justify-between items-center gap-1 lg:gap-8 rounded-xl border-t-2 hover:border-b-transparent hover:shadow-xl border-stone-300 transition duration-300 pt-6 pb-4 px-4 lg:px-8"
     >
-      <div className="flex-[1] gap-x-20 grid grid-cols-7 grid-rows-5 items-center justify-between">
-        <div className="flex flex-col gap-4 justify-between col-span-4 row-span-4">
-          <div className="flex justify-center items-center place-self-start gap-4">
+      <div className="flex-[1] gap-x-20 flex flex-col lg:grid grid-cols-7 grid-rows-5 items-start lg:items-center justify-start lg:justify-between w-full xl:w-auto">
+        <div className="flex flex-col gap-2 lg:gap-4 justify-between col-span-4 row-span-4 w-full lg:w-auto">
+          <div className="flex flex-col-reverse lg:flex-row justify-center items-start lg:items-center place-self-start gap-0 lg:gap-4">
             <p
               className={`${
                 status ? "text-green-700" : "text-red-700"
@@ -76,28 +76,36 @@ const CustomerData = (props) => {
             </p>
             <h2 className="font-bold text-2xl">{name}</h2>
           </div>
-          <div>
-            <p className="flex flex-col mb-2">
-              <span className="font-semibold">Address: </span>
-              <span>{address}</span>
+          <div className="">
+            <p className="grid grid-cols-4 lg:flex flex-row lg:flex-col gap-2 lg:gap-0 mb-1 lg:mb-2 ">
+              <span className="font-semibold col-span-1">Address:</span>
+              <span className="col-span-3">{address}</span>
             </p>
           </div>
         </div>
-        <div className="flex flex-col justify-end gap-2 col-span-3 row-span-4">
-          <p className="grid grid-cols-10 mb-2 gap-2">
-            <span className="font-semibold w-max col-span-3">Country: </span>
-            <span className="w-fit col-span-7">{country}</span>
+        <div className="flex flex-col justify-start lg:justify-end gap-0 lg:gap-2 col-span-3 row-span-4 mb-4 lg:mb-0 w-full lg:w-auto">
+          <p className="grid grid-cols-4 lg:grid-cols-10 mb-1 lg:mb-2 gap-2">
+            <span className="font-semibold w-max col-span-1 lg:col-span-3">
+              Country:{" "}
+            </span>
+            <span className="w-fit col-span-3 lg:col-span-7">{country}</span>
           </p>
-          <p className="grid grid-cols-10 mb-2 gap-2">
-            <span className="font-semibold w-max col-span-3">Phone: </span>{" "}
-            <span className="w-fit col-span-7">{phone_number}</span>
+          <p className="grid grid-cols-4 lg:grid-cols-10 mb-1 lg:mb-2 gap-2">
+            <span className="font-semibold w-max col-span-1 lg:col-span-3">
+              Phone:{" "}
+            </span>{" "}
+            <span className="w-fit col-span-3 lg:col-span-7">
+              {phone_number}
+            </span>
           </p>
-          <p className="grid grid-cols-10 mb-2 gap-2">
-            <span className="font-semibold w-max col-span-3">Job Title: </span>{" "}
-            <span className="w-fit col-span-7">{job_title}</span>
+          <p className="grid grid-cols-4 lg:grid-cols-10 mb-1 lg:mb-2 gap-2">
+            <span className="font-semibold w-max col-span-1 lg:col-span-3">
+              Job Title:{" "}
+            </span>{" "}
+            <span className="w-fit col-span-3 lg:col-span-7">{job_title}</span>
           </p>
         </div>
-        <div className="col-span-7 row-span-1 flex gap-4 mt-2">
+        <div className="col-span-7 row-span-1 flex flex-col lg:flex-row gap-1 lg:gap-4 mt-2">
           <p className="text-xs">
             <span className="font-semibold w-max col-span-3">Updated at: </span>
             <span>{formatedUpdatedAt}</span>
@@ -109,20 +117,20 @@ const CustomerData = (props) => {
         </div>
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex justify-end items-start gap-4 w-full xl:w-auto">
         <button
           onClick={editCustomerDataHandler}
-          className="flex gap-4 items-center bg-green-700 hover:bg-green-600 hover:shadow-md transition duration-300 text-white py-1 px-5 rounded-md"
+          className="flex gap-4 items-center bg-green-700 hover:bg-green-600 hover:shadow-md transition duration-300 text-white py-1 px-2 lg:px-5 rounded-md"
         >
           <PencilIcon size={"2vh"} />
-          <span>Edit</span>
+          <span className="hidden lg:block">Edit</span>
         </button>
         <button
           onClick={deleteCustomerDataHandler}
-          className="flex gap-4 items-center bg-red-700 hover:bg-red-600 hover:shadow-md transition duration-300 text-white py-1 px-5 rounded-md"
+          className="flex gap-4 items-center bg-red-700 hover:bg-red-600 hover:shadow-md transition duration-300 text-white py-1 px-2 lg:px-5 rounded-md"
         >
           <TrashIcon size={"2vh"} />
-          <span>Delete</span>
+          <span className="hidden lg:block">Delete</span>
         </button>
       </div>
     </div>

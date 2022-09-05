@@ -56,7 +56,7 @@ const UpdateCustomer = (props) => {
       return;
     }
 
-    confirmCtx.updateTitle("Simpan Perubahan?");
+    confirmCtx.updateTitle("Update Data?");
     confirmCtx.updateRequestConfig({
       method: "PUT",
       body: {
@@ -72,7 +72,7 @@ const UpdateCustomer = (props) => {
   };
 
   return (
-    <div className="w-[639px] border-2 border-t-0 border-stone-300 rounded-lg p-4 mx-auto">
+    <div className="w-auto sm:w-[639px] border-2 border-t-0 border-stone-300 rounded-lg p-4 mx-auto">
       <button
         onClick={backToHome}
         className="flex gap-2 items-center justify-start"

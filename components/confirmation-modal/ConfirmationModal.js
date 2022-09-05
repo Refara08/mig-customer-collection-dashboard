@@ -59,18 +59,18 @@ const Confirmation = () => {
 
   return (
     <ConfirmationModal onCloseCart={() => updateTitle(null)}>
-      <div className="bg-white text-black w-[300px] flex flex-col items-center p-4 rounded-lg">
+      <div className="bg-white text-black w-[70vw] lg:w-[300px] flex flex-col items-center p-4 rounded-lg">
         <h2 className="text-xl font-bold mb-12">{title}</h2>
         <div className="flex justify-evenly w-full">
           <button
             onClick={proceedHandler}
-            className="flex gap-2 items-center bg-green-800 hover:bg-green-600 hover:shadow-lg transition duration-300 text-white font-semibold py-2 px-6 rounded-3xl"
+            className="flex gap-2 items-center bg-green-800 hover:bg-green-600 hover:shadow-lg transition duration-300 text-xl text-white font-semibold py-2 px-6 rounded-3xl"
           >
             Yes
           </button>
           <button
             onClick={() => updateTitle(null)}
-            className="flex gap-2 items-center bg-red-800 hover:bg-red-600 hover:shadow-lg transition duration-300 text-white font-semibold py-2 px-6 rounded-3xl"
+            className="flex gap-2 items-center bg-red-800 hover:bg-red-600 hover:shadow-lg transition duration-300 text-xl text-white font-semibold py-2 px-6 rounded-3xl"
           >
             No
           </button>

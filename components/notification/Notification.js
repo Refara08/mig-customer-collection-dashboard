@@ -16,7 +16,7 @@ const Notification = (props) => {
   return (
     <NotifModal>
       <div
-        className={`${styling}  text-white py-4 px-8 rounded-b-lg w-fit flex gap-20`}
+        className={`${styling}  text-white py-4 px-8 rounded-b-lg w-screen md:w-fit flex gap-20`}
       >
         <span>{status}</span>
         <span>{message}</span>

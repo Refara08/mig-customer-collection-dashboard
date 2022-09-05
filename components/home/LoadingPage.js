@@ -6,7 +6,7 @@ const LoadingPage = () => {
       <div className="animate-spin mb-8">
         <LoadingIcon size={"5rem"} />
       </div>
-      <p className="text-3xl font-bold text-stone-500">Loading data....</p>
+      <p className="text-3xl font-bold text-stone-500">Loading....</p>
     </div>
   );
 };

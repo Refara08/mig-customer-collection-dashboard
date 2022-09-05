@@ -5,22 +5,20 @@ const Backdrop = (props) => {
   return (
     <div
       className="fixed top-0 left-0 w-full h-screen bg-black bg-opacity-70 z-40"
-      onClick={props.onCloseCart}
+      onClick={props.onClose}
     />
   );
 };
 
 const ModalOverlay = (props) => {
   return (
-    <div
-      className={`fixed top-0 right-1/2 translate-x-1/2 translate-y-80 lg:translate-y-60 z-50`}
-    >
+    <div className={`fixed top-0 left-0 z-50`}>
       <div>{props.children}</div>
     </div>
   );
 };
 
-const ConfirmationModal = (props) => {
+const UtilsPanelModal = (props) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -33,7 +31,7 @@ const ConfirmationModal = (props) => {
     <>
       {mounted
         ? createPortal(
-            <Backdrop onCloseCart={props.onCloseCart} />,
+            <Backdrop onClose={props.onClose} />,
             document.querySelector("#confirmation")
           )
         : null}
@@ -47,4 +45,4 @@ const ConfirmationModal = (props) => {
   );
 };
 
-export default ConfirmationModal;
+export default UtilsPanelModal;

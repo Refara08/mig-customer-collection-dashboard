@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 
 import UtilsPanel from "./UtilsPanel";
 import TopPanel from "./TopPanel";
+import TopPanelMobile from "./TopPanelMobile";
 
 import authContext from "../../store/auth-context";
 import LoadingPage from "./LoadingPage";
@@ -67,9 +68,16 @@ const Home = () => {
   }, [token]);
 
   return (
-    <div className="flex  h-[88vh] overflow-hidden border-b-2 border-stone-300">
+    <div className="flex  h-[93vh] md:h-[88vh] overflow-hidden border-b-2 border-stone-300">
       <UtilsPanel getFilter={getFilterHandler} getSort={getSortHandler} />
-      <div className="flex flex-[1] flex-col p-0 gap-y-4 w-full overflow-y-scroll">
+      <div className="flex flex-[1] flex-col p-0 gap-y-2 md:gap-y-4 w-full overflow-y-scroll">
+        <div className="block md:hidden sticky top-0 left-0 z-20 bg-white">
+          <TopPanelMobile
+            getInput={getEnteredSearch}
+            getFilter={getFilterHandler}
+            getSort={getSortHandler}
+          />
+        </div>
         <TopPanel getInput={getEnteredSearch} />
         {(loading || !loadedData) && <LoadingPage />}
         {!loading && loadedData && (

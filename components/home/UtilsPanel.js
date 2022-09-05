@@ -15,7 +15,7 @@ const UtilsPanel = (props) => {
   }, [sortBy]);
 
   return (
-    <div className="pb-4 pt-8 pl-2 border-r-2 border-stone-300 h-screen">
+    <div className="hidden md:block pb-4 pt-8 pl-2 border-r-2 border-stone-300 h-screen">
       {/* filter */}
       <div className=" w-full mb-12">
         <h3 className="mb-2 px-5 uppercase tracking-widest">filter</h3>

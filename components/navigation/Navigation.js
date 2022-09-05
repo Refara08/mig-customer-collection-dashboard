@@ -38,10 +38,10 @@ const Navigation = () => {
       {notifCtx.status && (
         <Notification status={notifCtx.status} message={notifCtx.message} />
       )}
-      <div className="sticky top-0 shadow-md bg-white bg-opacity-75 backdrop-blur-lg px-8 py-4 z-30">
+      <div className="sticky top-0 shadow-md bg-white bg-opacity-75 backdrop-blur-lg px-4 md:px-8 py-2 md:py-4 z-30">
         <nav className="flex justify-between items-center">
           <Link href={"/"}>
-            <a className="text-2xl font-bold">Costumer Collection</a>
+            <a className="text-lg md:text-2xl font-bold">Costumer Collection</a>
           </Link>
           <ul>
             <li
