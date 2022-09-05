@@ -9,11 +9,11 @@ const UtilsPanelMobile = (props) => {
 
   useEffect(() => {
     getFilter(filter);
-  }, [filter]);
+  }, [getFilter, filter]);
 
   useEffect(() => {
     getSort(sortBy);
-  }, [sortBy]);
+  }, [getSort, sortBy]);
 
   return (
     <UtilsPanelModal onClose={onClose}>

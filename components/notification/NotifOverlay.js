@@ -16,7 +16,7 @@ const NotifModal = (props) => {
     setMounted(true);
 
     return () => setMounted(false);
-  });
+  }, []);
 
   return (
     <>

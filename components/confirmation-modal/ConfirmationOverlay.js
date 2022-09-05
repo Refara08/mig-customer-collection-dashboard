@@ -27,7 +27,7 @@ const ConfirmationModal = (props) => {
     setMounted(true);
 
     return () => setMounted(false);
-  });
+  }, []);
 
   return (
     <>

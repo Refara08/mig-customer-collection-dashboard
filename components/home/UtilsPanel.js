@@ -7,11 +7,11 @@ const UtilsPanel = (props) => {
 
   useEffect(() => {
     getFilter(filter);
-  }, [filter]);
+  }, [getFilter, filter]);
 
   useEffect(() => {
     getSort(sortBy);
-  }, [sortBy]);
+  }, [getSort, sortBy]);
 
   return (
     <div className="hidden md:block pb-4 pt-8 pl-2 border-r-2 border-stone-300 h-screen">

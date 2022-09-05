@@ -17,7 +17,7 @@ export default function HomePage() {
     if (!isLoggedIn) {
       router.replace("/auth");
     }
-  }, []);
+  }, [isLoggedIn, router]);
 
   if (!isLoggedIn) {
     return <LoadingPage />;

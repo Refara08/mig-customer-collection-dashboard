@@ -30,7 +30,7 @@ const Navigation = () => {
     if (!authCtx.isLoggedIn) {
       router.replace("/auth");
     }
-  }, []);
+  }, [authCtx.isLoggedIn, router]);
 
   return (
     <>

@@ -25,7 +25,7 @@ const UtilsPanelModal = (props) => {
     setMounted(true);
 
     return () => setMounted(false);
-  });
+  }, []);
 
   return (
     <>

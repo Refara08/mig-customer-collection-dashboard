@@ -16,7 +16,7 @@ const CreateMobileBtnModal = (props) => {
     setMounted(true);
 
     return () => setMounted(false);
-  });
+  }, []);
 
   return (
     <>
