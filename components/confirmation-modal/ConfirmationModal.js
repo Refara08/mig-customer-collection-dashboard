@@ -8,11 +8,11 @@ import ConfirmationContext from "../../store/confirmation-context";
 import authContext from "../../store/auth-context";
 
 const Confirmation = () => {
-  const { title, updateTitle, requestConfig } = useContext(ConfirmationContext);
+  const { title, updateTitle, requestConfig, setLoading } =
+    useContext(ConfirmationContext);
   const { updateStatus, updateMessage } = useContext(NotificationContext);
   const { token } = useContext(authContext);
 
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [result, setResult] = useState(null);
 
@@ -51,6 +51,9 @@ const Confirmation = () => {
         setError(error);
         updateStatus("success");
         updateMessage(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
 
     router.replace("/");

@@ -2,6 +2,8 @@ import React, { useState, useCallback } from "react";
 
 const ConfirmationContext = React.createContext({
   title: null,
+  isLoading: false,
+  setLoading: () => {},
   updateTitle: () => {},
   requestConfig: {},
   updateRequestConfig: () => {},
@@ -10,6 +12,11 @@ const ConfirmationContext = React.createContext({
 export const ConfirmationContextProvider = (props) => {
   const [confTitle, setConfTitle] = useState(null);
   const [requestConfig, setRequestConfig] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const setLoading = (bool) => {
+    setIsLoading(bool);
+  };
 
   const updateConfTitle = (title) => {
     setConfTitle(title);
@@ -21,6 +28,8 @@ export const ConfirmationContextProvider = (props) => {
 
   const defaultVal = {
     title: confTitle,
+    isLoading,
+    setLoading,
     updateTitle: updateConfTitle,
     requestConfig,
     updateRequestConfig,

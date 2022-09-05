@@ -62,7 +62,7 @@ const CustomerData = (props) => {
   return (
     <div
       id={id}
-      className="flex flex-col-reverse xl:flex-row justify-between items-center gap-1 lg:gap-8 rounded-xl border-t-2 hover:border-b-transparent hover:shadow-xl border-stone-300 transition duration-300 pt-6 pb-4 px-4 lg:px-8"
+      className="flex flex-col-reverse xl:flex-row justify-between items-center gap-1 lg:gap-4 xl:gap-8 rounded-xl border-t-2 hover:border-b-transparent hover:shadow-xl border-stone-300 transition duration-300 pt-6 pb-4 px-4 lg:px-8"
     >
       <div className="flex-[1] gap-x-20 flex flex-col lg:grid grid-cols-7 grid-rows-5 items-start lg:items-center justify-start lg:justify-between w-full xl:w-auto">
         <div className="flex flex-col gap-2 lg:gap-4 justify-between col-span-4 row-span-4 w-full lg:w-auto">
@@ -105,7 +105,7 @@ const CustomerData = (props) => {
             <span className="w-fit col-span-3 lg:col-span-7">{job_title}</span>
           </p>
         </div>
-        <div className="col-span-7 row-span-1 flex flex-col lg:flex-row gap-1 lg:gap-4 mt-2">
+        <div className="col-span-7 row-span-1 flex flex-col sm:flex-row gap-1 sm:gap-4 mt-2">
           <p className="text-xs">
             <span className="font-semibold w-max col-span-3">Updated at: </span>
             <span>{formatedUpdatedAt}</span>
