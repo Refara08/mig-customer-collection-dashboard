@@ -17,7 +17,7 @@ const TopPanel = (props) => {
 
   useEffect(() => {
     getInput(enteredSearch.toLowerCase());
-  }, [enteredSearch]);
+  }, [getInput, enteredSearch]);
 
   return (
     <div className="hidden md:flex justify-between items-center mt-4 px-4">
