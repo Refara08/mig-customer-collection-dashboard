@@ -23,7 +23,7 @@ const TopPanelMobile = (props) => {
 
   useEffect(() => {
     getInput(enteredSearch.toLowerCase());
-  }, [getInput, enteredSearch]);
+  }, [enteredSearch]);
 
   return (
     <>
