@@ -13,7 +13,6 @@ const UtilsPanelMobile = (props) => {
 
   useEffect(() => {
     getSort(sortBy);
-    // console.log(sortBy);
   }, [sortBy]);
 
   return (

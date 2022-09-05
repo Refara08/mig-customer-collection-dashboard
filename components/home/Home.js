@@ -24,10 +24,6 @@ const Home = () => {
     setLoadedData(result.data);
   }, [result]);
 
-  // useEffect(() => {
-  //   setLoading(isLoading);
-  // }, [isLoading]);
-
   const getEnteredSearch = (input) => {
     if (!loading) {
       setLoadedData(

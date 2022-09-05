@@ -18,8 +18,6 @@ const Confirmation = () => {
 
   const router = useRouter();
 
-  // console.log(requestConfig);
-
   const proceedHandler = () => {
     setLoading(true);
     updateStatus("pending");
